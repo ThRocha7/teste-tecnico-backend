@@ -1,10 +1,13 @@
-import { Request, Response } from 'express';
-import { query } from "../../infra/database"
+import { Request, Response } from "express";
+import { createRegisterIntention } from "../model/register.model";
 
-export const intention = async (req:Request, res:Response) => {
-    return res.status(200).json({message: await query("SELECT 1+1", [])})
-}
+export const registerIntention = async (req: Request, res: Response) => {
+  try {
+    const result = await createRegisterIntention(req.body);
+    return res.status(201).json({ message: result });
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
 
-export const intentionUpdate = (req: Request, res: Response) => {
-    
-}
+export const updateIntention = (req: Request, res: Response) => {};
