@@ -20,7 +20,7 @@ export const validateBodyIntention = (
   }
 
   if (typeof zipcode_start !== "string" || typeof zipcode_end !== "string") {
-    return res.status(400).send("The data type is invalid");
+    return res.status(422).send("The data type is invalid");
   }
 
   if (!validateLength(zipcode_start) || !validateLength(zipcode_end)) {
@@ -52,5 +52,29 @@ export const validateBodyLeads = (
   if (name.length < 2) {
     return res.status(422).send("Invalid name");
   }
+  next();
+};
+
+export const validatePutIntention = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { lead_id } = req.body;
+  const intention_id = req.params.intention_id;
+  const regex = /^\d+$/;
+
+  if (!lead_id || !intention_id) {
+    return res.status(400).send("Missing required field");
+  }
+
+  if (typeof intention_id !== "string" || !regex.test(intention_id)) {
+    return res.status(400).send("The parameter intention_id is invalid");
+  }
+
+  if (typeof lead_id !== "string" || !regex.test(lead_id)) {
+    return res.status(422).send("The provided lead_id is invalid");
+  }
+
   next();
 };

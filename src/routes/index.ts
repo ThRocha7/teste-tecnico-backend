@@ -7,8 +7,8 @@ import { registerLead } from "../controllers/lead.controller";
 import {
   validateBodyIntention,
   validateBodyLeads,
+  validatePutIntention,
 } from "../middleware/validator";
-// import { consult } from "../controllers/apagar";
 
 function routes(app: Express) {
   /**
@@ -24,11 +24,9 @@ function routes(app: Express) {
    */
   app.post("/intention", validateBodyIntention, registerIntention);
 
-  app.put("/intention/:intention_id", updateIntention);
+  app.put("/intention/:intention_id", validatePutIntention, updateIntention);
 
   app.post("/lead", validateBodyLeads, registerLead);
-
-  // app.get("/consult/:table", consult);
 }
 
 export default routes;

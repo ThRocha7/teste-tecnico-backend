@@ -7,3 +7,7 @@ export interface postLead {
   name: string;
   email: string;
 }
+
+export interface putIntention {
+  lead_id: string;
+}
