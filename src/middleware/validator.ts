@@ -29,19 +29,28 @@ export const validateBodyIntention = (
   next();
 };
 
-// export const validateBodyLeads = (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//     const { name, email } = req.body;
-//     if (!name || !email) {
-//     return res.status(400).send("Missing required field");
-//   }
+export const validateBodyLeads = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { name, email } = req.body;
+  if (!name || !email) {
+    return res.status(400).send("Missing required field");
+  }
 
-//   if (typeof name !== "string" || typeof email !== "string") {
-//     return res.status(400).send("The data type is invalid");
-//   }
+  if (typeof name !== "string" || typeof email !== "string") {
+    return res.status(400).send("The data type is invalid");
+  }
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-//   if (!email.includes("@"))
-// };
+  if (!regex.test(email)) {
+    return res.status(422).send("Invalid email format");
+  }
+
+  //melhorar isso
+  if (name.length < 2) {
+    return res.status(422).send("Invalid name");
+  }
+  next();
+};

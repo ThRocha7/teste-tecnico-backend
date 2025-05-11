@@ -1,2 +1,3 @@
 node_modules
-data
+src/controllers/apagar.ts
+test/apis/get.test.ts

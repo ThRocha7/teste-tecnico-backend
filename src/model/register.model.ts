@@ -1,5 +1,5 @@
 import { query } from "../../infra/database";
-import { postIntention } from "../utils/interfaces";
+import { postIntention, postLead } from "../utils/interfaces";
 
 export const createRegisterIntention = async (datas: postIntention) => {
   try {
@@ -9,6 +9,18 @@ export const createRegisterIntention = async (datas: postIntention) => {
       datas.zipcode_start,
       datas.zipcode_end,
     ]);
+    return response.rows[0];
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const createRegisterLead = async (datas: postLead) => {
+  try {
+    const sqlQuery =
+      "INSERT INTO leads(name, email) VALUES ($1, $2) RETURNING *";
+    const response = await query(sqlQuery, [datas.name, datas.email]);
     return response.rows[0];
   } catch (error) {
     console.error(error);

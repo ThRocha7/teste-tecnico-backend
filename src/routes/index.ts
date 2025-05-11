@@ -6,7 +6,7 @@ import {
 import { registerLead } from "../controllers/lead.controller";
 import {
   validateBodyIntention,
-  // validateBodyLeads,
+  validateBodyLeads,
 } from "../middleware/validator";
 // import { consult } from "../controllers/apagar";
 
@@ -26,7 +26,7 @@ function routes(app: Express) {
 
   app.put("/intention/:intention_id", updateIntention);
 
-  // app.post("/lead", validateBodyLeads, registerLead);
+  app.post("/lead", validateBodyLeads, registerLead);
 
   // app.get("/consult/:table", consult);
 }
