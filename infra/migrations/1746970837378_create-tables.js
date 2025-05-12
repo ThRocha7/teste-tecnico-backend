@@ -24,6 +24,11 @@ exports.up = (pgm) => {
       notNull: true,
       unique: true,
     },
+    creat_at: {
+      type: "timestamp",
+      notNull: true,
+      default: pgm.func("CURRENT_TIMESTAMP"),
+    },
   });
 
   pgm.createTable("intentions", {
@@ -33,11 +38,11 @@ exports.up = (pgm) => {
       primaryKey: true,
     },
     zipcode_start: {
-      type: "VARCHAR(8)",
+      type: "VARCHAR(9)",
       notNull: true,
     },
     zipcode_end: {
-      type: "VARCHAR(8)",
+      type: "VARCHAR(9)",
       notNull: true,
     },
     lead_id: {
