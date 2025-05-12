@@ -47,9 +47,9 @@ export const validateBodyLeads = (
   if (!regexEmail.test(email)) {
     return res.status(422).send("Invalid email format");
   }
-  const regexName = /^[a-zA-Z0-9]+$/;
+  const regexName = /^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$/;
 
-  if (name.length < 2 || regexName.test(name)) {
+  if (name.length < 2 || !regexName.test(name)) {
     return res.status(422).send("Invalid name");
   }
   next();
@@ -60,6 +60,10 @@ export const validatePutIntention = (
   res: Response,
   next: NextFunction
 ) => {
+  if (!req.body || typeof req.body !== "object") {
+    return res.status(400).send("Request body is missing or invalid");
+  }
+
   const { lead_id } = req.body;
   const intention_id = req.params.intention_id;
   const regex = /^\d+$/;
