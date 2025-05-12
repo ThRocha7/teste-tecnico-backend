@@ -79,7 +79,6 @@ describe("PUT /intention/:intention_id", () => {
     );
 
     const body = await response.json();
-    console.log(body);
     expect(response.status).toBe(200);
     expect(body.message.lead_id.toString()).toBe(bodyRequest.lead_id);
   });

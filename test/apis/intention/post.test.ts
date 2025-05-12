@@ -16,7 +16,7 @@ describe("POST /intention", () => {
       expect(body).toBe("Missing required field");
     });
 
-    test("Should return 400 for invalid data type", async () => {
+    test("Should return 422 for invalid data type", async () => {
       const response = await fetch("http://localhost:3000/intention", {
         method: "POST",
         headers: {
@@ -29,7 +29,7 @@ describe("POST /intention", () => {
       });
 
       const body = await response.text();
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(422);
       expect(body).toBe("The data type is invalid");
     });
 

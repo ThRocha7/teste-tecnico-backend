@@ -32,23 +32,6 @@ describe("POST /lead", () => {
       expect(response.status).toBe(400);
       expect(body).toBe("The data type is invalid");
     });
-
-    //     test("Should return 422 for data with invalid length", async () => {
-    //       const response = await fetch("http://localhost:3000/lead", {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //           zipcode_start: "fulano",
-    //           zipcode_end: "fulanoemail.com",
-    //         }),
-    //       });
-
-    //       const body = await response.text();
-    //       expect(response.status).toBe(422);
-    //       expect(body).toBe("Expected 9 characters for all parameters");
-    //     });
   });
 
   test("Should return 201", async () => {
@@ -59,12 +42,11 @@ describe("POST /lead", () => {
       },
       body: JSON.stringify({
         name: "fulano",
-        email: "fulano@email.com",
+        email: "silva_rochath@outlook.com",
       }),
     });
 
     const body = await response.json();
-    console.log(body);
     expect(response.status).toBe(201);
     expect(body.message.sent_email).toBe(true);
   });

@@ -42,14 +42,14 @@ export const validateBodyLeads = (
   if (typeof name !== "string" || typeof email !== "string") {
     return res.status(400).send("The data type is invalid");
   }
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!regex.test(email)) {
+  if (!regexEmail.test(email)) {
     return res.status(422).send("Invalid email format");
   }
+  const regexName = /^[a-zA-Z0-9]+$/;
 
-  //melhorar isso
-  if (name.length < 2) {
+  if (name.length < 2 || regexName.test(name)) {
     return res.status(422).send("Invalid name");
   }
   next();
