@@ -20,7 +20,10 @@ export const createRegisterLead = async (datas: postLead) => {
   try {
     const sqlQuery =
       "INSERT INTO leads(name, email) VALUES ($1, $2) RETURNING *";
-    const response = await query(sqlQuery, [datas.name, datas.email]);
+    const response = await query(sqlQuery, [
+      datas.name.toLowerCase(),
+      datas.email.toLowerCase(),
+    ]);
     return response.rows[0];
   } catch (error) {
     console.error(error);

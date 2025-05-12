@@ -66,5 +66,6 @@ describe("POST /lead", () => {
     const body = await response.json();
     console.log(body);
     expect(response.status).toBe(201);
+    expect(body.message.sent_email).toBe(true);
   });
 });

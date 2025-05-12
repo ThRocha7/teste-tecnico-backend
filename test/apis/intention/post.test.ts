@@ -64,7 +64,7 @@ describe("POST /intention", () => {
     });
 
     const body = await response.json();
-    console.log(body);
     expect(response.status).toBe(201);
+    expect(body).toBeDefined();
   });
 });
