@@ -1,4 +1,31 @@
-import { putIntention } from "../../../src/utils/interfaces";
+import { query } from "../../../infra/database";
+
+beforeAll(async () => {
+  await query(
+    "TRUNCATE TABLE leads CASCADE; TRUNCATE TABLE intentions CASCADE;",
+    []
+  );
+  await fetch("http://localhost:3000/lead", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: "fulano",
+      email: "fulano@exemple.com",
+    }),
+  });
+  await fetch("http://localhost:3000/intention", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      zipcode_start: "12312-123",
+      zipcode_end: "12321-123",
+    }),
+  });
+});
 
 describe("PUT /intention/:intention_id", () => {
   describe("Testing if the middleware properly validates the datas", () => {

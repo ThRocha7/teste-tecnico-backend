@@ -19,6 +19,7 @@ export const updateIntention = async (req: Request, res: Response) => {
     const result = await updateRegisterIntention(intention_id, req.body);
     return res.status(200).json({ message: result });
   } catch (error) {
+    console.log(error)
     return res.status(422).send("Registration not updated");
   }
 };
