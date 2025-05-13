@@ -59,7 +59,7 @@ describe("POST /intention", () => {
       },
       body: JSON.stringify({
         zipcode_start: "12312-123",
-        zipcode_end: "12312-123",
+        zipcode_end: "12321-123",
       }),
     });
 

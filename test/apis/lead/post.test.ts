@@ -42,7 +42,7 @@ describe("POST /lead", () => {
       },
       body: JSON.stringify({
         name: "fulano",
-        email: "silva_rochath@outlook.com",
+        email: "thiagojimis007@gmail.com",
       }),
     });
 

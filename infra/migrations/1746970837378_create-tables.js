@@ -45,10 +45,15 @@ exports.up = (pgm) => {
       type: "VARCHAR(9)",
       notNull: true,
     },
+    creat_at: {
+      type: "timestamp",
+      notNull: true,
+      default: pgm.func("CURRENT_TIMESTAMP"),
+    },
     lead_id: {
       type: "int",
       references: "leads",
       onDelete: "CASCADE",
-    },
+    }
   });
 };
