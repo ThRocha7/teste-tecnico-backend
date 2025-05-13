@@ -84,7 +84,7 @@ export const welcomeEmail = async (email: string, username: string) => {
               gap: 20px;
             }
             .logo {
-              width: 80px;
+              width: 100px;
               height: auto;
             }
             .atte p {

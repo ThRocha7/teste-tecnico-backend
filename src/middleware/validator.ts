@@ -26,6 +26,10 @@ export const validateBodyIntention = (
   if (!validateLength(zipcode_start) || !validateLength(zipcode_end)) {
     return res.status(422).send("Expected 9 characters for all parameters");
   }
+
+  if (zipcode_start === zipcode_end){
+    return res.status(400).send("The parameters must be different");
+  }
   next();
 };
 
