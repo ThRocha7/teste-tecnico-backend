@@ -50,13 +50,16 @@ function routes(app: Express) {
    *                   example: 12312-123
    *                 zipcode_end:
    *                   type: string
-   *                   example: 12312-123
+   *                   example: 12312-321
+   *                 craete_at:
+   *                   type: string
+   *                   example: 2025-05-13T07:24:36.907Z
    *                 lead_id:
    *                   type: integer
    *                   nullable: true
    *                   example: null
    *       400:
-   *         description: Missing required field
+   *         description: Missing required field or parameters are equals
    *         content:
    *           text/plain:
    *             schema:
@@ -109,9 +112,22 @@ function routes(app: Express) {
    *                 message:
    *                   type: object
    *                   properties:
-   *                     lead_id:
-   *                       type: string
-   *                       example: "1"
+   *                 id:
+   *                   type: integer
+   *                   example: 1
+   *                 zipcode_start:
+   *                   type: string
+   *                   example: 12312-123
+   *                 zipcode_end:
+   *                   type: string
+   *                   example: 12312-321
+   *                 craete_at:
+   *                   type: string
+   *                   example: 2025-05-13T07:24:36.907Z
+   *                 lead_id:
+   *                   type: integer
+   *                   nullable: true
+   *                   example: 1
    *       400:
    *         description: Missing required field or invalid path parameter
    *         content:
@@ -170,6 +186,9 @@ function routes(app: Express) {
    *                 email:
    *                   type: string
    *                   example: fulano@email.com
+   *                 craete_at:
+   *                   type: string
+   *                   example: 2025-05-13T07:24:36.907Z
    *                 sent_email:
    *                   type: boolean
    *                   example: true
